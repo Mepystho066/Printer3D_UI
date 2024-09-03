@@ -1,3 +1,6 @@
+import sqlite3 as sql
+
+
 """
 Cobrabrar 10 pesos por hora de diseño 
 coste de tiempo de imprecion 5000 por hora 
@@ -44,3 +47,135 @@ DiccionarioVentas ={
     "valorTotal":[],
     "valorNeto":[]
 }
+
+dbFilament ="App/data/data/Filament.db"
+dbFilamentCost ="App/data/data/FilamentCost.db"
+dbPrints ="App/data/data/Prints.db"
+dbPrintsCosts ="App/data/data/PrintsCosts.db"
+dbUserPrinsts ="App/data/data/UserPrinsts.db"
+dbUsers ="App/data/data/Users.db"
+dbFactura ="App/data/data/Factura.db"
+
+
+def createSettingDB():
+    if False == Path(dbPath).exists():
+        conn = sql.connect(dbPath)
+        conn.commit()
+        conn.close()
+    
+def createTableFilaments():
+    conn = sql.connect(dbPath)
+    cursor = conn.cursor()
+    cursor.execute("""CREATE TABLE Filament (
+    Id int private key identity (1,1) not null AUTO_INCREMENT,
+    filamentName varchar(15),
+    color color,
+    furniture varchar(15),
+    cuantity int ,
+    filamentCostIdFK,
+    Foreign key (filamentCostIdFK) References FilamentCost(Id) 
+    )""")
+    conn.commit()
+    conn.close()
+
+def createTableFilamentCosts():
+    conn = sql.connect(dbPath)
+    cursor = conn.cursor()
+    cursor.execute("""CREATE TABLE FilamentCosts (
+    Id int private key identity (1,1) not null AUTO_INCREMENT,
+    cost int,
+    dateBuy date,
+    cauntity int 
+    )""")
+    conn.commit()
+    conn.close()
+
+def createTablePrints():
+    conn = sql.connect(dbPath)
+    cursor = conn.cursor()
+    cursor.execute("""CREATE TABLE Prints (
+    Id int private key identity (1,1) not null AUTO_INCREMENT,
+    name varchar(50),
+    img image,
+    tunePrint int,
+    filamentIdFK int,
+    printCostIdFK int,
+    Foreign key(filamentIdFK) References Filament(Id),
+    Foreign key(printCostIdFK) References PrintCost(Id) 
+    )""")
+    conn.commit()
+    conn.close()
+    
+
+def createTablePrintCosts():
+    conn = sql.connect(dbPath)
+    cursor = conn.cursor()
+    cursor.execute("""CREATE TABLE PrintCosts (
+    Id int private key identity (1,1) not null AUTO_INCREMENT,
+    total double,
+    iva int,
+    )""")
+    conn.commit()
+    conn.close()
+
+
+def createTableUsersPrints():
+    conn = sql.connect(dbPath)
+    cursor = conn.cursor()
+    cursor.execute("""CREATE TABLE UsersPrints (
+    cantidad int,
+    dataSell date,
+    userPrint
+    printIdFK int,
+    userIdFK int,
+    Foreign key(PrintIdFK) References Prints(Id),
+    Foreign key(userIdFK) References Users(Id),
+    Primary KEY(PrintIdFK,UserIdFK)
+    )""")
+    conn.commit()
+    conn.close()
+
+def createTableUsers():
+    conn = sql.connect(dbPath)
+    cursor = conn.cursor()
+    cursor.execute("""CREATE TABLE Setings (
+    Id int private key identity (1,1) not null AUTO_INCREMENT,
+    name varchar(10),
+    lastName varchar(10),
+    Country varchar(10),
+    addres varchar,
+    postalCode varchar,
+    facturaIdFK int,
+    Foreing key(facturaIdFK) References Factura (Id)
+    )""")
+    conn.commit()
+    conn.close()
+
+def createTableFactura():
+    conn = sql.connect(dbPath)
+    cursor = conn.cursor()
+    cursor.execute("""CREATE TABLE Setings (
+    Id int private key identity (1,1) not null AUTO_INCREMENT,
+    namePrint varchar,
+    cuantityPrints int,
+    totalCost int
+    )""")
+    conn.commit()
+    conn.close()
+
+def insertInfo(moneyType,iva,gastoEnergeticoImpresora,costoImpresora,retornoDeInvercionImpresora,usoDeHorasComerciales,costoRepacion,costoTotalMantenimiento,preparacionImpresionTiempoHoras,preparacionImpresionCosto,postProcesamientoTiempoHoras,postProcesamientoValor,costoTotalDeTrabajo):
+    conn = sql.connect(dbPath)
+    cursor = conn.cursor()
+    instruccion = f"INSERT INTO Setings VALUES ('{moneyType}',{iva},{gastoEnergeticoImpresora},{costoImpresora},{retornoDeInvercionImpresora},{usoDeHorasComerciales},{costoRepacion},{costoTotalMantenimiento},{preparacionImpresionTiempoHoras},{preparacionImpresionCosto},{postProcesamientoTiempoHoras},{postProcesamientoValor},{costoTotalDeTrabajo})"
+    cursor.execute(instruccion)
+    conn.commit()
+    conn.close()
+def mostrarTabla():
+    conn = sql.connect(dbPath)
+    cursor = conn.cursor()
+    instruccion = f"SELECT * FROM Setings"
+    cursor.execute(instruccion)
+    datos = cursor.fetchall()
+    conn.commit()
+    conn.close()
+    print(datos)

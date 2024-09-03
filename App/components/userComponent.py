@@ -6,7 +6,7 @@ class UserComponent():
     
     def body(self):
             with dpg.group(tag="grupUser", width=300):
-                userID = dpg.add_input_int(label ="user ID", tag="userID")
+                userID = dpg.add_input_text(label ="user ID", tag="userID")
                 userName = dpg.add_input_text(label="User name", tag="userName",)
                 lastName = dpg.add_input_text(label="Last name", tag="lastName",)
                 userAddres = dpg.add_input_text(label="User addres", tag="userAddres",)
