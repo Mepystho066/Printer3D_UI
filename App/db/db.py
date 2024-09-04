@@ -37,15 +37,7 @@ class Tables:
             )''')
 
         self.cursor.execute('''
-            CREATE TABLE IF NOT EXISTS filaments  """
-    -facturas
-    -users
-    -filamentCosts
-    -filaments
-    printCosts
-    prints
-    userPrints
-    """(
+            CREATE TABLE IF NOT EXISTS filaments  (
                 id INTEGER PRIMARY KEY,
                 filamentName TEXT,
                 color COLOR ,
@@ -86,7 +78,7 @@ class Tables:
             )''')
 
         self.connection.commit()
-    # Tables insertions 
+    # Tables insetions 
     def insert_factura(self,printName,cuantityPrints,totalCost):
         self.connection.execute(''' INSERT INTO facturas (printName ,cuantityPrints ,totalCost) VALUES (?,?,?)''',
          (printName,cuantityPrints,totalCost))
