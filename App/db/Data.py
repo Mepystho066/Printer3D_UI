@@ -1,6 +1,5 @@
 import sqlite3 as sql
 
-
 """
 Cobrabrar 10 pesos por hora de diseño 
 coste de tiempo de imprecion 5000 por hora 
@@ -48,13 +47,6 @@ DiccionarioVentas ={
     "valorNeto":[]
 }
 
-dbFilament ="App/data/data/Filament.db"
-dbFilamentCost ="App/data/data/FilamentCost.db"
-dbPrints ="App/data/data/Prints.db"
-dbPrintsCosts ="App/data/data/PrintsCosts.db"
-dbUserPrinsts ="App/data/data/UserPrinsts.db"
-dbUsers ="App/data/data/Users.db"
-dbFactura ="App/data/data/Factura.db"
 
 
 def createSettingDB():
@@ -170,6 +162,7 @@ def insertInfo(moneyType,iva,gastoEnergeticoImpresora,costoImpresora,retornoDeIn
     cursor.execute(instruccion)
     conn.commit()
     conn.close()
+    
 def mostrarTabla():
     conn = sql.connect(dbPath)
     cursor = conn.cursor()

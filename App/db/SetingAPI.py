@@ -17,7 +17,7 @@ postProcesamientoValor
 costoTotalDeTrabajo
 """
 
-dbPath ="App/data/data/setingsApi.db"
+dbPath ="App/db/data/setingsApi.db"
 def createSettingDB():
     if False == Path(dbPath).exists():
         conn = sql.connect(dbPath)
@@ -27,7 +27,7 @@ def createSettingDB():
 def createTable():
     conn = sql.connect(dbPath)
     cursor = conn.cursor()
-    cursor.execute("""CREATE TABLE Setings (
+    cursor.execute("""CREATE TABLE IF NOT EXISTS Setings (
     moneyType varchar(15), 
     iva dobule,
     gastoEnergeticoImpresora doble,
@@ -43,7 +43,11 @@ def createTable():
     costoTotalDeTrabajo doble)""")
     conn.commit()
     conn.close()
-def insertInfo(moneyType,iva,gastoEnergeticoImpresora,costoImpresora,retornoDeInvercionImpresora,usoDeHorasComerciales,costoRepacion,costoTotalMantenimiento,preparacionImpresionTiempoHoras,preparacionImpresionCosto,postProcesamientoTiempoHoras,postProcesamientoValor,costoTotalDeTrabajo):
+
+
+def insertInfo(moneyType,iva,gastoEnergeticoImpresora,costoImpresora,retornoDeInvercionImpresora,
+                usoDeHorasComerciales,costoRepacion,costoTotalMantenimiento,preparacionImpresionTiempoHoras,
+                preparacionImpresionCosto,postProcesamientoTiempoHoras,postProcesamientoValor,costoTotalDeTrabajo):
     conn = sql.connect(dbPath)
     cursor = conn.cursor()
     instruccion = f"INSERT INTO Setings VALUES ('{moneyType}',{iva},{gastoEnergeticoImpresora},{costoImpresora},{retornoDeInvercionImpresora},{usoDeHorasComerciales},{costoRepacion},{costoTotalMantenimiento},{preparacionImpresionTiempoHoras},{preparacionImpresionCosto},{postProcesamientoTiempoHoras},{postProcesamientoValor},{costoTotalDeTrabajo})"
