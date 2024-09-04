@@ -50,8 +50,8 @@ class Tables:
             CREATE TABLE IF NOT EXISTS printCosts (
                 id INTEGER PRYMARY KEY,
                 iva DOUBLE, 
-                totalValue INTEGER
-                date date,
+                totalValue INTEGER,
+                date date
         )''')
 
         self.cursor.execute(''' 
@@ -89,44 +89,50 @@ class Tables:
             INSERT INTO users (name,lastName,email,conunty,city,addres,postalCode,facturaFK) VALUES (?,?,?,?,?,?,?,?)''',
              (name,lastName,email,conunty,city,addres,postalCode,facturaFK))
         self.connection.commit()
+
     def insert_filamentCosts():
         self.connection.execute(''' INSERT INTO filamentCosts (cost,dateBuy) VALUES (?,?)''', 
         (cost,dateBuy))
         self.connection.commit()
+
     def insert_filaments():
         self.connection.execute(''' INSERT INTO filaments (filamentName,color,companyName,filamentCostFK) VALUES (?,?,?,?)''', 
         (filamentName,color,companyName,filamentCostFK))
         self.connection.commit()
+
     def insert_printCosts():
         self.connection.execute(''' INSERT INTO printCosts (iva,totalValue,date) VALUES (?,?,?,?)''', (
             iva,totalValue,date))
         self.connection.commit()
+
     def insert_prints():
         self.connection.execute(''' INSERT INTO prints (name,img,printTime,filamentFK,printCostFK) VALUES (?,?,?,?,?)''', 
         (name,img,printTime,filamentFK,printCostFK))
         self.connection.commit()
+
     def insert_userPrints():
         self.connection.execute('''
         INSERT INTO userPrints (userIdFK,printIdFK,cuantityPrints,dateSell) VALUES (?,?,?,?)''', 
         (userIdFK,printIdFK,cuantityPrints,dateSell))
         self.connection.commit()
-    def queryTable(self,nameTable):
+
+    def querysTable(self,nameTable):
         try :
-            print("filtro 1")
             tables = ['facturas','users','filamentCosts','filaments','printCosts','prints','userPrints']
             if nameTable in tables:
-            
                 self.cursor.execute(f'SELECT * FROM {nameTable}')
                 return self.cursor.fetchall()
         except ValueError: 
             print("filtro error ")
             return ValueError
             
+    def querysTableCombine (self):
+        pass
 if __name__ =="__main__":
     tablas = Tables("App/db/data/dataBase.db")
     tablas.createTables()
     #tablas.insert_user()
-    tablas.insert_factura('mascara larga',3,60000)
-    users =tablas.queryTable('facturas')
-    print(users)
+    #tablas.insert_factura('mascara larga',3,60000)
+    #users =tablas.queryTable('facturas')
+    
     

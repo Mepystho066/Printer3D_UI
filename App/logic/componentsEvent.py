@@ -1,11 +1,19 @@
 import dearpygui.dearpygui as dpg
+from db.db import *
 def tagsDates():
     #User
     userID = dpg.get_value("userID")
     userName = dpg.get_value("userName")
     lastName = dpg.get_value("lastName")
-    userAddres = dpg.get_value("userAddres")
+    email = dpg.get_value("email")
     Fecha = dpg.get_value("Fecha")
+    
+    #address
+    conunty = dpg.get_value("conunty")
+    city = dpg.get_value("city")
+    addres = dpg.get_value("addres")
+    postalCode = dpg.get_value("postalCode")
+
     #Print
     printName = dpg.get_value("printName")
     FilamentoColor = dpg.get_value("FilamentoColor")
