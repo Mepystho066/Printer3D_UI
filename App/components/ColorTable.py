@@ -6,6 +6,8 @@ class ColorTable():
         self.viewport()
 
     def body(self):
+
+        ## Error con la base de datos 
         """ColorDictionary = self.dataColor()
         with dpg.table(tag="TableColor"):
             Nombre = dpg.add_table_column(label="Name")
