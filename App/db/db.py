@@ -154,7 +154,7 @@ class Tables:
             print("filtro error ")
             return ValueError
         
-#"""
+"""
 if __name__ =="__main__":
     tablas = Tables()
     tablas.createTables()
@@ -165,4 +165,4 @@ if __name__ =="__main__":
     #tablas.insert_factura('mascara larga',3,60000)
     users = tablas.querysTable('filaments')
     print(users)
-   #""" 
+   """ 
