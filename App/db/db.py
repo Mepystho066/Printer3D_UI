@@ -1,10 +1,17 @@
 import sqlite3 as sql
+import os
+
 
 class Tables:
-    def __init__(self, path="App/db/data/dataBase.db"):
-        self.connection = sql.connect(path) 
-        self.cursor = self.connection.cursor()
-
+    def __init__(self, path="db/data/dataBase.db"):
+        self.directory = os.path.dirname(path)
+        if not os.path.exists(self.directory):
+            os.makedirs(self.directory)
+            self.connection = sql.connect(path) 
+            self.cursor = self.connection.cursor()
+        else: 
+            self.connection = sql.connect(path) 
+            self.cursor = self.connection.cursor()
     def createTables(self):
         self.cursor.execute('''
             CREATE TABLE IF NOT EXISTS facturas ( 
@@ -147,9 +154,9 @@ class Tables:
             print("filtro error ")
             return ValueError
         
-"""
+#"""
 if __name__ =="__main__":
-    tablas = Tables("App/db/data/dataBase.db")
+    tablas = Tables()
     tablas.createTables()
     #tablas.insert_user()
     # #filamentName,color,companyName
@@ -158,4 +165,4 @@ if __name__ =="__main__":
     #tablas.insert_factura('mascara larga',3,60000)
     users = tablas.querysTable('filaments')
     print(users)
-""" 
+   #""" 

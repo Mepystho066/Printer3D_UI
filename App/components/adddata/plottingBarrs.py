@@ -4,17 +4,8 @@ class PlottingBarrs():
        self.viewport()
     
     def body(self):
+
         DiccionarioVentas ={
-        "fecha":[],
-        "nombre":[],
-        "tipo_Impresion":[],
-        "filamentoColor":[],
-        "tipoDeCantidades":[], 
-        "cantidad":[],
-        "filamentoUtilizado":[],
-        "valorLaminador":[],
-        "Tiempo":[],
-        "electricidadValor":[],
         "PagoTrabajador":[],
         "ahorroImpresora":[], 
         "valorTotal":[],
@@ -43,6 +34,28 @@ class PlottingBarrs():
 
     def viewport(self):
         self.body()
-
+    def dbEvent(self):
+             DiccionarioVentas ={
+            "PagoTrabajador":[],
+            "ahorroImpresora":[], 
+            "valorTotal":[],
+            "valorNeto":[]
+        }
     def visualEvent(self): 
-       pass
+        espacio=[]
+        for i in range(len(DiccionarioVentas["valorNeto"])):
+            espacio.append(i)   
+    
+        dpg.set_value("series 0",[espacio,DiccionarioVentas["PagoTrabajador"]])
+        dpg.set_value("series 1",[espacio,DiccionarioVentas["ahorroImpresora"]])
+        dpg.set_value("series 2",[espacio,DiccionarioVentas["valorTotal"]])
+        dpg.set_value("series 3",[espacio,DiccionarioVentas["valorNeto"]])
+    
+        espacio1 = [i*10 for i in range(len(DiccionarioVentas["valorNeto"]))]
+        espacio2 = [i*10+1 for i in range(len(DiccionarioVentas["valorNeto"]))]
+        espacio3 = [i*10+2 for i in range(len(DiccionarioVentas["valorNeto"]))]
+        espacio4 = [i*10+3 for i in range(len(DiccionarioVentas["valorNeto"]))]
+        dpg.set_value("series 0.0",[espacio1,DiccionarioVentas["PagoTrabajador"]])
+        dpg.set_value("series 0.1",[espacio2,DiccionarioVentas["ahorroImpresora"]])
+        dpg.set_value("series 0.2",[espacio3,DiccionarioVentas["valorTotal"]])
+        dpg.set_value("series 0.3",[espacio4,DiccionarioVentas["valorNeto"]])

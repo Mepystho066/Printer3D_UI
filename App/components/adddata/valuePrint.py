@@ -18,7 +18,7 @@ class ValuePrint():
                 ValorNeto = dpg.add_slider_double(label="Valor Neto",tag="ValorNeto",enabled=False,width=200,format='%.2f')
         
     def visualEvent(self): 
-       print("hola")
+       print("")
     
     def viewport(self):
         with dpg.child_window(width=500,height=130):
