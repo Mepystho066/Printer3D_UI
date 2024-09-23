@@ -8,11 +8,13 @@ Esta diseñado para ayudar a la gestión de ventas de impresiones 3D
 - 
 ## Uso 
 
+- 1 Activar el entrono virutal 
 ~~~shell
-# 1 Activar el entrono virutal 
 python -m Print3D_UI/bin/active 
+~~~
 
-# 2 Ejecutar la aplicacion 
+- 2 Ejecutar la aplicacion 
+~~~shell
 python App/Print3D_UI.py
 ~~~
 
