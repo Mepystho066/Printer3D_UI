@@ -23,7 +23,3 @@ python App/Print3D_UI.py
 - Sqlitle: Estructura la base de datos
 
 
-
-
-# Licencia
-![image](https://github.com/user-attachments/assets/08ae6fe9-48da-44a5-859e-0468cd9128e7)
