@@ -3,7 +3,7 @@ import os
 
 
 class Tables:
-    def __init__(self, path="db/data/dataBase.db"):
+    def enabled(self, path="db/data/dataBase.db"):
         self.directory = os.path.dirname(path)
         if not os.path.exists(self.directory):
             os.makedirs(self.directory)
@@ -12,6 +12,9 @@ class Tables:
         else: 
             self.connection = sql.connect(path) 
             self.cursor = self.connection.cursor()
+        return self.cursor , self.connection
+   
+   
     def createTables(self):
         self.cursor.execute('''
             CREATE TABLE IF NOT EXISTS facturas ( 
