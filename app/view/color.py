@@ -2,23 +2,23 @@ import dearpygui.dearpygui as dpg
 class Color():
     def __init__(self):
         self.viewport()
-
     def body(self):
-        with dpg.group(height=115,width=100,horizontal=True):
-            with dpg.group(horizontal=True):
-
+        with dpg.group(height=115,horizontal=True):
+            with dpg.group(horizontal=True,width=225):
                 self.table_color()
-            with dpg.child_window(height=115, width=100):
+            with dpg.child_window(height=115, width=200):
                # with dpg.tree_node(label="add"):
                 dpg.add_color_picker(height=100, width=100)
-        #with dpg.group(height=50, width=50):
-                dpg.add_button(label="add")
-
+            with dpg.group(horizontal=False,height=100, width=120):
+                dpg.add_input_text(label="Name")
+                dpg.add_input_text(label="Color")
+                dpg.add_input_text(label="Company")
+                dpg.add_input_text(label="Cuantity")
+                dpg.add_input_text(label="Value")
+            dpg.add_button(label="Add",height=50,width=50)
 
     def viewport(self):
-
             self.body()
-
     def table_color (self):
         with dpg.child_window(height=115):
             with dpg.table(tag="color_table", header_row=True) as selectablerows:

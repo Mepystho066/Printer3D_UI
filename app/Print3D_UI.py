@@ -1,5 +1,6 @@
 import dearpygui.dearpygui as dpg 
 import dearpygui.demo as demo
+from app.service.creation_tables import createTables
 from view.userComponent import UserComponent
 from view.printComponent import PrintComponent
 from view.adddata.graphs import ViewGraphs
@@ -36,3 +37,4 @@ class Main():
     
 if __name__ == "__main__":
     Main()
+    createTables()

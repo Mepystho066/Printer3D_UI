@@ -1,22 +1,31 @@
 from app.service.db_service import request_query
 
 class User :
-    NAME_CLASS = 'Users'
+    NAME_CLASS = 'Settings'
 
     #  Definimos los atributos
-    def __init__(self, id: str = None, name: str = None, lastname: str = None,email: str = None):
-        self.id = id
-        self.name = name
-        self.lastname = lastname
-        self.email = email
+    def __init__(self, id: str = None,MoneyType:str = None,
+                 IVA:str = None,energyConsumption:str = None,
+                 PrinterCost:str = None,ReturnYeas:str = None,
+                 hoursCommercialUse:str = None,repairCosts:str = None,
+                 workingTime:str = None,postProcessingTime:str= None):
+        self.MoneyType = MoneyType
+        self.IVA = IVA
+        self.energyConsumption = energyConsumption
+        self.PrinterCost = PrinterCost
+        self.ReturnYeas = ReturnYeas
+        self.hoursCommercialUse = hoursCommercialUse
+        self.repairCosts = repairCosts
+        self.workingTime = workingTime
+        self.postProcessingTime = postProcessingTime
 
     # Aquí definimos como se muestra el objeto cuando se llama
     def __str__(self):
-        return f"id={self.id},name={self.name},lasname={self.lastname} email={self.email}"
+        return f"""MoneyType={self.MoneyType},IVA={self.IVA},energyConsumption={self.energyConsumption},PrinterCost={self.PrinterCost},ReturnYeas={self.ReturnYeas},hoursCommercialUse={self.hoursCommercialUse},repairCosts={self.repairCosts},workingTime={self.workingTime},postProcessingTime={self.postProcessingTime}"""
 
     # Definimos como se muestra una serie de objetos
     def __repr__(self):
-        return f"id={self.id},name={self.name},lastame={self.lastname} email={self.email}"
+        return f"""MoneyType={self.MoneyType},IVA={self.IVA},energyConsumption={self.energyConsumption},PrinterCost={self.PrinterCost},ReturnYeas={self.ReturnYeas},hoursCommercialUse={self.hoursCommercialUse},repairCosts={self.repairCosts},workingTime={self.workingTime},postProcessingTime={self.postProcessingTime}"""
 
     # -- Definimos metodos el objeto --
 
@@ -60,11 +69,16 @@ class User :
         return obj
 
     def create_table(self):
-        query = f'''CREATE TABLE IF NOT EXISTS {self.NAME_CLASS} (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    name TEXT DEFAULT None DISTINCT,
-                    lastname TEXT DEFAULT None DISTINCT,
-                    email TEXT DEFAULT None NOT DISTINCT
+        query = f'''CREATE TABLE IF NOT EXISTS {self.NAME_CLASS} (  
+                    MoneyType DOUBLE ,
+                    IVA DOUBLE ,
+                    energyConsumption DOUBLE ,
+                    PrinterCost DOUBLE ,
+                    ReturnYeas DOUBLE ,
+                    hoursCommercialUse DOUBLE ,
+                    repairCosts DOUBLE ,
+                    workingTime DOUBLE ,
+                    postProcessingTime DOUBLE
                     )'''
         request_query(query)
 

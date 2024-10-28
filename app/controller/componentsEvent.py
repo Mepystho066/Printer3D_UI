@@ -1,5 +1,5 @@
 import dearpygui.dearpygui as dpg
-from app.service.db import *
+
 def tagsDates():
     #User
     userID = dpg.get_value("userID")
@@ -41,12 +41,24 @@ def userAddDates():
     print(tagsDates())
 
 def settingsDate():
-    MoneyType
-    IVA
-    energyConsumption
-    EnergyCost
-    PrinterCost
-    ReturnYeas
-    hoursCommercialUse
-    repairCosts
-    maintenanceCostTotal
+
+    MoneyType = dpg.get_value('MoneyType')
+    IVA = dpg.get_value('IVA')
+    energyConsumption = dpg.get_value('energyConsumption')
+    EnergyCost = dpg.get_value('EnergyCost')
+    PrinterCost = dpg.get_value('PrinterCost')
+    ReturnYeas = dpg.get_value('ReturnYeas')
+    hoursCommercialUse = dpg.get_value('hoursCommercialUse')
+    repairCosts = dpg.get_value('repairCosts')
+    maintenanceCostTotal = dpg.get_value('maintenanceCostTotal')
+    workingTime = dpg.get_value('workingTime')
+    costWorkinTime = dpg.get_value('costWorkinTime')
+    postProcessingTime = dpg.get_value('postProcessingTime')
+    postProcessingCost = dpg.get_value('postProcessingCost')
+    totalLaborCost = dpg.get_value('totalLaborCost')
+
+    setingsValues = [MoneyType,IVA,energyConsumption,EnergyCost,
+                    PrinterCost,ReturnYeas,hoursCommercialUse,
+                    repairCosts,maintenanceCostTotal,workingTime,
+                    costWorkinTime,postProcessingTime,postProcessingCost,totalLaborCost]
+    return  setingsValues

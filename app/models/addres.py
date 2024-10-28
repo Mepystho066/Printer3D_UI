@@ -1,7 +1,7 @@
 from app.service.db_service import request_query
 
 class Addres :
-    NAME_CLASS = 'Addess'
+    NAME_CLASS = 'Address'
 
     #  Definimos los atributos
     def __init__(self,id:str=None,user_id:str=None,county: str=None,city: str=None,addres: str=None,postalCode: str=None):
@@ -24,15 +24,15 @@ class Addres :
 
     def save(self):
         # Aqui van los atributos
-        query = f'INSERT INTO {self.NAME_CLASS}(county,city,addres,postalCode) VALUES(?,?,?,?,?)'
+        query = f'INSERT INTO {self.NAME_CLASS}(user_id,county,city,addres,postalCode) VALUES(?,?,?,?,?)'
         parameter = (self.user_id,self.county,self.city,self.addres,self.postalCode)
         print('save ', parameter)
         return request_query(query, parameter)
 
     @classmethod
-    def create(clss, name, lastname, email):
+    def create(clss,user_id,county,city,addres,postalCode):
         # Agregar los atributos que van a entrar
-        obj = clss(name,lastname,email)
+        obj = clss(user_id=user_id,county=county,city=city,addres=addres,postalCode=postalCode)
         print('create ' , obj)
         data = obj.save()
         return data
@@ -66,10 +66,12 @@ class Addres :
         query = f'''CREATE TABLE IF NOT EXISTS {self.NAME_CLASS} (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     user_id integer DEFAULT None,
-                    county TEXT DEFAULT None DISTINCT,
-                    city TEXT DEFAULT None DISTINCT,
-                    addres TEXT DEFAULT None NOT DISTINCT,
-                    postalCode integer DEFAULT None NOT DISTINCT
+                    county TEXT DEFAULT None ,
+                    city TEXT DEFAULT None ,
+                    addres TEXT DEFAULT None  ,
+                    postalCode integer DEFAULT None ,
+                    UNIQUE(county,city,addres,postalCode),                 
+                    FOREIGN KEY (user_id) REFERENCES User(id)
                     )'''
         request_query(query)
 
