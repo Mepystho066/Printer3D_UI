@@ -1,5 +1,6 @@
 # Print3D UI
-![Prints3D_UI](https://github.com/user-attachments/assets/66a6c06c-c6c8-4948-9ead-89a9d41df453)
+![alt text](image-1.png)
+![alt text](image-2.png)
 ## Información
 
 Esta diseñado para ayudar a la gestión de ventas de impresiones 3D 
@@ -10,12 +11,12 @@ Esta diseñado para ayudar a la gestión de ventas de impresiones 3D
 
 - 1 Activar el entrono virtual 
 ~~~shell
-python -m Print3D_UI/bin/active 
+source ./bin/active 
 ~~~
 
 - 2 Ejecutar la aplicación 
 ~~~shell
-python App/Print3D_UI.py
+python3 Print3D_UI.py
 ~~~
 
 ## Librerías 

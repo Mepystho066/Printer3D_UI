@@ -1,11 +1,11 @@
 import dearpygui.dearpygui as dpg 
 import dearpygui.demo as demo
 from app.service.creation_tables import createTables
-from view.userComponent import UserComponent
-from view.printComponent import PrintComponent
-from view.adddata.graphs import ViewGraphs
-from view.settings import Settings
-from view.style import Sytle
+from app.view.userComponent import UserComponent
+from app.view.printComponent import PrintComponent
+from app.view.adddata.graphs import ViewGraphs
+from app.view.settings import Settings
+from app.view.style import Sytle
 class Main():
     def __init__(self):
         self.viewport()
@@ -33,8 +33,8 @@ class Main():
         dpg.start_dearpygui()
         dpg.destroy_context()
     def domuments(self):
-        demo.show_demo()
-    
+        #demo.show_demo()
+        dpg.show_style_editor()
 if __name__ == "__main__":
     Main()
     createTables()
