@@ -51,13 +51,14 @@ class PrintComponent():
 
         with dpg.child_window(height=115):
             with dpg.table(tag="user_table", header_row=True) as selectablerows:
-                dpg.add_table_column(label="First")
-                dpg.add_table_column(label="Second")
-                dpg.add_table_column(label="Third")
+                dpg.add_table_column(label="Name")
+                dpg.add_table_column(label="Filament")
+                dpg.add_table_column(label="TimePirnt")
+                dpg.add_table_column(label="Value")
                 for i in range(15):
                     with dpg.table_row():
-                        for j in range(3):
-                            dpg.add_selectable(label=f"Row{i} Column{j}", callback=self.clb_selectable, user_data=j)
+                        for j in range(4):
+                            dpg.add_selectable(label=f"{i} {j}", callback=self.clb_selectable, user_data=j)
 
     def clb_selectable(self, sender, app_data, user_data):
         print(f"Row {user_data}")

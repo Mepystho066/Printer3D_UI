@@ -1,5 +1,6 @@
 import dearpygui.dearpygui as dpg 
 from app.controller.search import search_user
+from datetime import date
 class UserComponent():
     def __init__(self):
         self.viewport()
@@ -20,6 +21,8 @@ class UserComponent():
                 postalCode = dpg.add_input_text(label = "postalCode" ,tag="postalCode")
 
     def viewport(self):
+        time =  date.today()
+        
         with dpg.group(horizontal=True):
             with dpg.child_window(width=400,height=105):
                 self.userInfo()
@@ -27,4 +30,6 @@ class UserComponent():
                 self.addres()
             #with dpg.tree_node(label="Date time"):
             with dpg.child_window(width=180,height=170):
-                Fecha= dpg.add_date_picker(label="Fecha",tag="Fecha",default_value={'month_day':2 , 'year': 123, 'month': 2})
+                Fecha= dpg.add_date_picker(label="Fecha",tag="Fecha",default_value={'month_day':time.day -1 , 'year': time.year-1900, 'month': time.month})
+        
+      

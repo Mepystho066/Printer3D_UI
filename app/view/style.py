@@ -15,7 +15,6 @@ class Sytle():
             dpg.add_theme_color(dpg.mvThemeCol_FrameBg, (148, 188, 224), category=dpg.mvThemeCat_Core)
             dpg.add_theme_style(dpg.mvStyleVar_FrameRounding, 5, category=dpg.mvThemeCat_Core)
 
-
     def viewport(self):
         with dpg.theme() as global_theme:
             self.body()

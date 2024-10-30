@@ -6,10 +6,11 @@ from app.view.printComponent import PrintComponent
 from app.view.adddata.graphs import ViewGraphs
 from app.view.settings import Settings
 from app.view.style import Sytle
+
 class Main():
     def __init__(self):
         self.viewport()
-    
+        createTables()
     def body(self):
         with dpg.window(label="Principal",tag="Principal"):
             with dpg.tab_bar():
@@ -35,6 +36,7 @@ class Main():
     def domuments(self):
         #demo.show_demo()
         dpg.show_style_editor()
+        
 if __name__ == "__main__":
     Main()
-    createTables()
+    

@@ -1,24 +1,26 @@
 import dearpygui.dearpygui as dpg
+from app.controller.saveValues import saveSettings
+from app.controller.getValues import setingsValues
 class Settings():
     def __init__(self):
-       self.viewport()
-    
+        self.viewport()
+        setingsValues()
     def body(self):
         with dpg.group(horizontal=True):
             with dpg.group(horizontal=False):
-                with dpg.child_window(height=150,width=420):
+                with dpg.child_window(height=160,width=420):
                     with dpg.group(tag="Values",width=200):
                         dpg.add_text("Values")
-                        moneyValue = dpg.add_input_double(label="Money type",tag='MoneyType')
-                        iva = dpg.add_input_double(label="IVA",tag='IVA')
+                        moneyValue = dpg.add_input_text(label="Money type",tag='MoneyType')
+                        iva = dpg.add_input_double(label="IVA",tag='IVA',format='%.2f')
                     with dpg.group(tag="Electricity",width=200):
                         dpg.add_text("Electricity")
-                        energyConsumption=dpg.add_input_double(label="Energy consumption"+" Kw",tag="energyConsumption")
+                        energyConsumption=dpg.add_input_double(label="Energy consumption"+" Kw",tag="energyConsumption",format='%.2f')
                         # Agregar descripciones
                         with dpg.tooltip("energyConsumption"):
                             dpg.add_text("Energia consumida por la impresora")
-                        energyCost = dpg.add_input_double(label="Energy cost kw/h ",tag='EnergyCost')
-
+                        energyCost = dpg.add_input_double(label="Energy cost kw/h ",tag='EnergyCost',format='%.2f')
+                    totalCost = dpg.add_input_double(label="Total Cost",tag='EnergyTotalCost',format='%.2f')
                 with dpg.child_window(height=150,width=420):
                     dpg.add_text("Maintenance and machine cost")
                     with dpg.group(tag="MaintenanceAndMachineCost",width=200):
@@ -31,7 +33,8 @@ class Settings():
             with dpg.group(horizontal=False):
                 with dpg.child_window(height=230):
                     self.laborCost()
-                dpg.add_button(label='save', height=50, width=50)
+                dpg.add_button(label='save', height=50, width=50,callback=saveSettings)
+    
     def viewport(self):
             self.body()
    #def visualEvent(self): 
@@ -48,14 +51,14 @@ class Settings():
                         # Agregar descripciones
                         with dpg.tooltip("workingTime"):
                             dpg.add_text("texto")
-                        costWorkinTime =dpg.add_input_double(label="Cost working time",tag="costWorkinTime")
+                        costWorkinTime =dpg.add_input_double(label="Cost working time",tag="costWorkinTime",format='%.2f')
                 with dpg.group(height=90, horizontal=False):
-                    totalLaborCost = dpg.add_input_double(label="Total labor cost", width=200, tag="totalLaborCost")
+                    totalLaborCost = dpg.add_input_double(label="Total labor cost", width=200, tag="totalLaborCost",format='%.2f')
             with dpg.child_window(height=90,width=650):
                 with dpg.group(tag="PostProcessing"):
                     dpg.add_text("Post-processing")
                     postProcessingTime= dpg.add_slider_int(label="Post-processing time Hours",tag="postProcessingTime")
-                    postProcessingCost = dpg.add_input_double(label="Post-processing time Cost",tag="postProcessingCost")
+                    postProcessingCost = dpg.add_input_double(label="Post-processing time Cost",tag="postProcessingCost",format='%.2f')
 
 
 

@@ -50,15 +50,15 @@ def settingsDate():
     ReturnYeas = dpg.get_value('ReturnYeas')
     hoursCommercialUse = dpg.get_value('hoursCommercialUse')
     repairCosts = dpg.get_value('repairCosts')
-    maintenanceCostTotal = dpg.get_value('maintenanceCostTotal')
+    #maintenanceCostTotal = dpg.get_value('maintenanceCostTotal')
     workingTime = dpg.get_value('workingTime')
     costWorkinTime = dpg.get_value('costWorkinTime')
     postProcessingTime = dpg.get_value('postProcessingTime')
     postProcessingCost = dpg.get_value('postProcessingCost')
-    totalLaborCost = dpg.get_value('totalLaborCost')
+    #totalLaborCost = dpg.get_value('totalLaborCost')
 
     setingsValues = [MoneyType,IVA,energyConsumption,EnergyCost,
                     PrinterCost,ReturnYeas,hoursCommercialUse,
-                    repairCosts,maintenanceCostTotal,workingTime,
-                    costWorkinTime,postProcessingTime,postProcessingCost,totalLaborCost]
+                    repairCosts,workingTime,costWorkinTime,
+                    postProcessingTime,postProcessingCost]
     return  setingsValues
