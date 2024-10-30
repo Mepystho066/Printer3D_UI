@@ -16,7 +16,7 @@ class Filament :
     # -- Definimos metodos el objeto --
     def save(self):
         # Aqui van los atributos
-        query = f'INSERT INTO {self.NAME_CLASS}(name,) VALUES(?,?,?)'
+        query = f'INSERT INTO {self.NAME_CLASS}(name) VALUES(?)'
         parameter = (self.name, )
         print('save ', parameter)
         return request_query(query, parameter)
@@ -72,7 +72,7 @@ class Filament :
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     name TEXT DEFAULT None ,
                    
-                    UNIQUE(name,lastname,email)
+                    UNIQUE(name)
                     )'''
         request_query(query)
 
