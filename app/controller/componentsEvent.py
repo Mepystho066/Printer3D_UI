@@ -22,6 +22,14 @@ def tagsDates():
     Cantidad = dpg.get_value("Cantidad")
     filamentUsed = dpg.get_value("filamentUsed")
     pintList = [printName,FilamentoColor,Tipo,cuantityTands,Cantidad,filamentUsed]
+   
+    #Filament
+    filamentName =dpg.get_value("filamentName")
+    filamentColor =dpg.get_value("filamentColor")
+    company =dpg.get_value("company")
+    filamentValue =dpg.get_value("filamentValue")
+    filaments = [filamentName,filamentColor,company,filamentValue]
+    
     #Values
     hours =dpg.get_value("hours")
     minuts = dpg.get_value("minuts")
@@ -35,7 +43,7 @@ def tagsDates():
 
     Fecha = dpg.get_value("Fecha")
 
-    return [userList, address ,pintList ,valuestList,Fecha]
+    return [userList, address ,pintList,filaments ,valuestList,Fecha]
 
 def userAddDates():
     print(tagsDates())

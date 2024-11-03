@@ -3,6 +3,7 @@ from app.controller.componentsEvent import tagsDates,settingsDate
 from app.models.addres import Addres
 from app.models.user import User
 from app.models.settings import Setting
+from app.models.filaments import Filament
 def saveValues():
     # User
     userVal = tagsDates()[0]
@@ -25,4 +26,14 @@ def saveSettings():
                     values_app[3],values_app[4],values_app[5],
                     values_app[6],values_app[7],values_app[8],
                     values_app[9],values_app[10],values_app[11])
+
+def saveColor():
+    dateFilament = tagsDates()[3]
+    #Filament().create(dateFilament[0],dateFilament[1],dateFilament[2],dateFilament[3])
+    test =  Filament().get_fom_db()
+    for i in enumerate(test):
+        print(i)
+        for e in i :
+            print(e)
+
     

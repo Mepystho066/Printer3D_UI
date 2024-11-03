@@ -1,6 +1,7 @@
 import dearpygui.dearpygui as dpg
 from app.controller.componentsEvent import *
 from app.models.user import User
+from app.models.filaments import Filament
 
 def search_user():
     userData = tagsDates()[0]
@@ -31,6 +32,5 @@ def search_user():
     #    date_search = User().get_for_name(userData[1])
     #    setInfo(date_search)
 
-
-
+   
 

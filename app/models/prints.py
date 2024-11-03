@@ -4,35 +4,35 @@ class Print :
     NAME_CLASS = 'Print'
 
     #  Definimos los atributos
-    def __init__(self, id: str = None,name: str = None,image:str = None,filamentFK:str = None,timePrint:str = None):
+    def __init__(self, id: str = None,name: str = None,image:str = None,timePrint:str = None,value:int=None,filamentFK:str = None):
 
         self.id = id
         self.name = name
         self.image = image
-        self.filamentFK = filamentFK
         self.timePrint = timePrint
-        
+        self.value = value 
+        self.filamentFK = filamentFK
     # Aquí definimos como se muestra el objeto cuando se llama
     def __str__(self):
-        return f"id={self.id},name={self.name},image={self.image},filamentFK={self.filamentFK},timePrint={self.timePrint}"
+        return f"id={self.id},name={self.name},image={self.image},timePrint={self.timePrint},value={self.value},filamentFK={self.filamentFK}"
 
     # Definimos como se muestra una serie de objetos
     def __repr__(self):
-        return f"id={self.id},name={self.name},image={self.image},filamentFK={self.filamentFK},timePrint={self.timePrint}"
+        return f"id={self.id},name={self.name},image={self.image},timePrint={self.timePrint},value={self.value},filamentFK={self.filamentFK}"
 
     # -- Definimos metodos el objeto --
 
     def save(self):
         # Aqui van los atributos
-        query = f'INSERT INTO {self.NAME_CLASS}(name,image,filamentFK,timePrint) VALUES(?,?,?,?)'
-        parameter = (self.name,self.image,self.filamentFK,self.timePrint)
+        query = f'INSERT INTO {self.NAME_CLASS}(name,image,timePrint,value,filamentFK) VALUES(?,?,?,?,?)'
+        parameter = (self.name,self.image,self.timePrint,self.value,self.filamentFK)
         print('save ', parameter)
         return request_query(query, parameter)
 
     @classmethod
-    def create(clss, name,image,filamentFK,timePrint):
+    def create(clss, name,image,timePrint,value,filamentFK):
         # Agregar los atributos que van a entrar
-        obj = clss(name,image,filamentFK,timePrint)
+        obj = clss(name,image,timePrint,value,filamentFK)
         print('create ' , obj)
         data = obj.save()
         return data
@@ -44,7 +44,7 @@ class Print :
 
     @classmethod
     def for_obj(clss, param):
-        obj = clss(name= param[1], image=param[2],filamentFK=param[3],timePrint=param[4])
+        obj = clss(name= param[1], image=param[2],timePrint=param[3],value=param[4],filamentFK=param[5])
         obj.id = param[0] # Para objener el id si el objeto tine un id
         return obj
 
@@ -59,7 +59,7 @@ class Print :
     def get_for_name (clss,name):
         query = f'SELECT * From {clss.NAME_CLASS} WHERE name = ?'
         row = request_query(query,(name)).fetchall()
-        obj =clss(row[0][0],row[0][1],row[0][2],row[0][3],row[0][4])
+        obj =clss(row[0][0],row[0][1],row[0][2],row[0][3],row[0][4],row[0][5])
         return obj
 
 
@@ -68,8 +68,9 @@ class Print :
                     id INTEGER PRIMARY KEY AUTOINCREMENT ,
                     name TEXT DEFAULT None,
                     image TEXT DEFAULT None,
+                    timePrint INTEGER,
+                    value INTEGER,
                     filamentFK INTEGER,
-                    timePrint INTEGER 
                     )'''
         request_query(query)
 
