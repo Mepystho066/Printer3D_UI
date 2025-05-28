@@ -9,8 +9,8 @@ Esta diseñado para ayudar a la gestión de ventas de impresiones 3D
 - 
 
 ### Librerías 
-- Dearpygui: Diseño de la aplicación 
-- Sqlitle: Estructura la base de datos
+- *Dearpygui*: Diseño de la aplicación 
+- *Sqlitle*: Estructura la base de datos
 
 ## Uso 
 
